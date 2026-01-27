@@ -1,0 +1,18 @@
+name: 🧱 Tech / Refactor
+description: Refatoração, melhoria técnica ou infra
+title: "[Tech] "
+labels: ["tech"]
+body:
+  - type: textarea
+    id: context
+    attributes:
+      label: 📍 Contexto
+      description: Por que isso é necessário?
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: 🛠️ Solução proposta
+      description: Como será resolvido

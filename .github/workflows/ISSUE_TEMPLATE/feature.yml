@@ -1,0 +1,30 @@
+name: 🚀 Feature
+description: Nova funcionalidade ou módulo
+title: "[Feature] "
+labels: ["feature"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: 📌 Descrição
+      description: Explique o que será implementado
+      placeholder: Ex. Criar controller para dashboard
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: ✅ Critérios de Aceite
+      description: O que precisa estar pronto para considerar concluído
+      placeholder: |
+        - [ ] UI desacoplada da lógica
+        - [ ] Testes passando
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: 🧠 Notas Técnicas
+      description: Decisões técnicas, referências, ideias
