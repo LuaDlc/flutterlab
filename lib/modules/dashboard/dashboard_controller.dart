@@ -18,6 +18,8 @@ class DashboardController extends ChangeNotifier {
   String _searchQuery = '';
   String? _selectedCategory;
 
+  String? get selectedCategory => _selectedCategory;
+
   DashboardController() {
     _applyFilters();
   }
@@ -28,6 +30,10 @@ class DashboardController extends ChangeNotifier {
   void toggleGroupByCategory() {
     _groupByCategory = !_groupByCategory;
     notifyListeners();
+  }
+
+  List<String> get categories {
+    return _allProducts.map((p) => p.category).toSet().toList()..sort();
   }
 
   double get totalValue =>
