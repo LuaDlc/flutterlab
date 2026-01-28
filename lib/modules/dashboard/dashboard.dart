@@ -147,9 +147,9 @@ class _DashboardPageState extends State<DashboardPage> {
 
     return ListView.builder(
       controller: scrollController,
-      itemCount: controller.products.length,
+      itemCount: controller.allProducts.length,
       itemBuilder: (_, index) {
-        final product = controller.products[index];
+        final product = controller.allProducts[index];
 
         return ListTile(
           title: Text(product.name),
