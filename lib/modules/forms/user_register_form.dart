@@ -9,12 +9,21 @@ class UserRegisterForm extends StatefulWidget {
 
 class _UserRegisterFormState extends State<UserRegisterForm> {
   final _formKey = GlobalKey<FormState>();
+  final _confirmPasswordKey = GlobalKey<FormFieldState<String>>();
+
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _repeatPasswordController = TextEditingController();
 
+  final _nameFocus = FocusNode();
+  final _emailFocus = FocusNode();
+  final _passwordFocus = FocusNode();
+  final _repeatPasswordFocus = FocusNode();
+
   bool _obscured = true;
+  AutovalidateMode _autoValidateMode = AutovalidateMode.disabled;
+  bool _isFormValid = false;
 
   @override
   void dispose() {
@@ -22,14 +31,31 @@ class _UserRegisterFormState extends State<UserRegisterForm> {
     _emailController.dispose();
     _passwordController.dispose();
     _repeatPasswordController.dispose();
+    _nameFocus.dispose();
+    _emailFocus.dispose();
+    _passwordFocus.dispose();
+    _repeatPasswordFocus.dispose();
     super.dispose();
   }
 
   void _submit() {
+    setState(() {
+      _autoValidateMode = AutovalidateMode.onUserInteraction;
+    });
     if (_formKey.currentState!.validate()) {
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(const SnackBar(content: Text('Cadastro válido 🎉')));
+    }
+  }
+
+  void _updateFormValidity() {
+    final isValid = _formKey.currentState?.validate() ?? false;
+
+    if (isValid != _isFormValid) {
+      setState(() {
+        _isFormValid = isValid;
+      });
     }
   }
 
@@ -41,6 +67,7 @@ class _UserRegisterFormState extends State<UserRegisterForm> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Form(
+            autovalidateMode: _autoValidateMode,
             key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,6 +75,12 @@ class _UserRegisterFormState extends State<UserRegisterForm> {
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: TextFormField(
+                    keyboardType: TextInputType.text,
+                    textInputAction: TextInputAction.next,
+                    focusNode: _nameFocus,
+                    onFieldSubmitted: (_) {
+                      FocusScope.of(context).requestFocus(_emailFocus);
+                    },
                     decoration: InputDecoration(
                       hintText: 'Nome *',
                       labelText: 'Nome *',
@@ -63,20 +96,24 @@ class _UserRegisterFormState extends State<UserRegisterForm> {
 
                       return null;
                     },
-                    onChanged: (value) => _nameController.text = value,
+                    onChanged: (_) => _updateFormValidity(),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: TextFormField(
-                    inputFormatters: [],
+                    keyboardType: TextInputType.emailAddress,
+                    textInputAction: TextInputAction.next,
+                    focusNode: _emailFocus,
+                    onFieldSubmitted: (_) {
+                      FocusScope.of(context).requestFocus(_emailFocus);
+                    },
+
                     decoration: InputDecoration(
                       hintText: 'email *',
                       labelText: 'email *',
                     ),
-                    controller: TextEditingController(
-                      text: _emailController.text,
-                    ),
+                    controller: _emailController,
 
                     validator: (value) {
                       final emailRegex = RegExp(
@@ -90,17 +127,21 @@ class _UserRegisterFormState extends State<UserRegisterForm> {
 
                       return null;
                     },
-                    onChanged: (value) {
-                      _emailController.text = value;
-                    },
+                    onChanged: (_) => _updateFormValidity(),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: TextFormField(
+                    onFieldSubmitted: (_) {
+                      FocusScope.of(context).requestFocus(_passwordFocus);
+                    },
+                    keyboardType: TextInputType.text,
+                    textInputAction: TextInputAction.next,
+                    focusNode: _passwordFocus,
                     obscureText: _obscured,
                     decoration: InputDecoration(
-                      hintText: 'senh *',
+                      hintText: 'senha *',
                       labelText: 'senha *',
 
                       suffixIcon: IconButton(
@@ -114,9 +155,8 @@ class _UserRegisterFormState extends State<UserRegisterForm> {
                         ),
                       ),
                     ),
-                    controller: TextEditingController(
-                      text: _passwordController.text,
-                    ),
+                    controller: _passwordController,
+
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Informe uma senha';
@@ -126,13 +166,23 @@ class _UserRegisterFormState extends State<UserRegisterForm> {
                       }
                       return null;
                     },
-                    onChanged: (value) => _passwordController.text = value,
+                    onChanged: (_) {
+                      _confirmPasswordKey.currentState?.validate();
+                      _updateFormValidity();
+                    },
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: TextFormField(
+                    key: _confirmPasswordKey,
+                    keyboardType: TextInputType.text,
+                    textInputAction: TextInputAction.done,
+                    focusNode: _repeatPasswordFocus,
                     obscureText: _obscured,
+                    onFieldSubmitted: (_) {
+                      FocusScope.of(context).requestFocus(_repeatPasswordFocus);
+                    },
                     decoration: InputDecoration(
                       suffixIcon: IconButton(
                         onPressed: () {
@@ -147,9 +197,8 @@ class _UserRegisterFormState extends State<UserRegisterForm> {
                       hintText: 'senha *',
                       labelText: 'senha *',
                     ),
-                    controller: TextEditingController(
-                      text: _repeatPasswordController.text,
-                    ),
+                    controller: _repeatPasswordController,
+
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Repita uma senha';
@@ -162,15 +211,20 @@ class _UserRegisterFormState extends State<UserRegisterForm> {
                       }
                       return null;
                     },
-                    onChanged: (value) =>
-                        _repeatPasswordController.text = value,
+                    onChanged: (_) {
+                      _confirmPasswordKey.currentState?.validate();
+                      _updateFormValidity();
+                    },
                   ),
                 ),
               ],
             ),
           ),
           const SizedBox(height: 24),
-          ElevatedButton(onPressed: _submit, child: const Text('Cadastrar')),
+          ElevatedButton(
+            onPressed: _isFormValid ? _submit : null,
+            child: const Text('Cadastrar'),
+          ),
         ],
       ),
     );
