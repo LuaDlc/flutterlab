@@ -43,7 +43,7 @@ class _DashboardPageState extends State<DashboardPage> {
               _summaryCard(),
               _search(),
               _actions(),
-              Expanded(child: _productsList()),
+              Expanded(child: _list()),
             ],
           );
         },
@@ -79,6 +79,12 @@ class _DashboardPageState extends State<DashboardPage> {
       spacing: 8,
       children: [
         ElevatedButton(
+          onPressed: () => controller.toggleGroupByCategory,
+          child: Text(
+            controller.isGrouped ? 'Lista simples' : 'Agrupar por categoria',
+          ),
+        ),
+        ElevatedButton(
           onPressed: () => controller.sort(.highestPrice),
           child: const Text('Maior preço'),
         ),
@@ -100,7 +106,44 @@ class _DashboardPageState extends State<DashboardPage> {
     );
   }
 
-  Widget _productsList() {
+  Widget _list() {
+    if (controller.isGrouped) {
+      final grouped = controller.groupByCategory();
+
+      return ListView(
+        controller: scrollController,
+        children: grouped.entries.map((entry) {
+          final category = entry.key;
+          final products = entry.value;
+
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(12),
+                child: Text(
+                  category,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              ...products.map(
+                (product) => ListTile(
+                  title: Text(product.name),
+                  subtitle: Text('R\$ ${product.price}'),
+                  trailing: product.active
+                      ? const Icon(Icons.check, color: Colors.green)
+                      : const Icon(Icons.close, color: Colors.red),
+                ),
+              ),
+            ],
+          );
+        }).toList(),
+      );
+    }
+
     return ListView.builder(
       controller: scrollController,
       itemCount: controller.products.length,
@@ -109,10 +152,10 @@ class _DashboardPageState extends State<DashboardPage> {
 
         return ListTile(
           title: Text(product.name),
-          subtitle: Text('${product.category}  R\$ ${product.price}}'),
+          subtitle: Text('${product.category} • R\$ ${product.price}'),
           trailing: product.active
-              ? const Icon(Icons.check_circle, color: Colors.green)
-              : const Icon(Icons.cancel, color: Colors.red),
+              ? const Icon(Icons.check, color: Colors.green)
+              : const Icon(Icons.close, color: Colors.red),
         );
       },
     );
