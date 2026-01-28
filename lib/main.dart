@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutterlab/app.dart';
 import 'package:flutterlab/modules/dashboard/dashboard.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const FlutterLabApp());
 }
 
 class MyApp extends StatelessWidget {

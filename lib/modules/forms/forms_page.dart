@@ -5,9 +5,12 @@ class FormsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Forms ')),
-      body: const Center(child: Text('Forms', style: TextStyle(fontSize: 18))),
+    return Center(
+      child: const ListTile(
+        title: Text('Cadastro de usuários', style: TextStyle(fontSize: 18)),
+        leading: Icon(Icons.person),
+        subtitle: Text('Validações, foco e regex'),
+      ),
     );
   }
 }

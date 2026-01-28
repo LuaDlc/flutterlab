@@ -1,47 +1,59 @@
+import 'package:flutter/material.dart';
+import 'package:flutterlab/core/layouts/app_shell.dart';
 import 'package:flutterlab/modules/dashboard/dashboard.dart';
+import 'package:flutterlab/modules/forms/forms_page.dart';
 import 'package:flutterlab/modules/media/media_page.dart';
 import 'package:flutterlab/modules/numbers/numbers_page.dart';
 import 'package:flutterlab/modules/settings/settings_page.dart';
 import 'package:flutterlab/modules/text/text_page.dart';
 import 'package:go_router/go_router.dart';
 
+final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
+
 class AppRouter {
-  static final router = GoRouter(
+  static final GoRouter router = GoRouter(
+    navigatorKey: rootNavigatorKey,
+    initialLocation: '/',
     routes: [
-      GoRoute(
-        path: '/',
-        name: 'dashboard',
-        builder: (context, state) => DashboardPage(),
-      ),
-      GoRoute(
-        path: '/numbers',
-        name: 'numbers',
-        builder: (context, state) {
-          return const NumbersPage();
+      ShellRoute(
+        builder: (context, state, child) {
+          return AppShell(child: child);
         },
-      ),
 
-      GoRoute(
-        path: '/text',
-        name: 'text',
-        builder: (context, state) {
-          return const TextPage();
-        },
-      ),
+        routes: [
+          GoRoute(
+            path: '/',
+            name: 'dashboard',
+            builder: (_, _) => const DashboardPage(),
+          ),
+          GoRoute(
+            path: '/numbers',
+            name: 'numbers',
+            pageBuilder: (_, _) => const MaterialPage(child: NumbersPage()),
+          ),
 
-      GoRoute(
-        path: '/media',
-        name: 'media',
-        builder: (context, state) {
-          return const MediaPage();
-        },
-      ),
-      GoRoute(
-        path: '/settings',
-        name: 'settings',
-        builder: (context, state) {
-          return const SettingsPage();
-        },
+          GoRoute(
+            path: '/text',
+            name: 'text',
+            builder: (_, _) => const TextPage(),
+          ),
+
+          GoRoute(
+            path: '/media',
+            name: 'media',
+            builder: (_, _) => const MediaPage(),
+          ),
+          GoRoute(
+            path: '/settings',
+            name: 'settings',
+            builder: (_, _) => const SettingsPage(),
+          ),
+          GoRoute(
+            path: '/forms',
+            name: 'forms',
+            builder: (_, _) => const FormsPage(),
+          ),
+        ],
       ),
     ],
   );

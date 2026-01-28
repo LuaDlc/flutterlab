@@ -5,9 +5,6 @@ class MediaPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Media ')),
-      body: const Center(child: Text('Media', style: TextStyle(fontSize: 18))),
-    );
+    return Center(child: Text('Media', style: TextStyle(fontSize: 18)));
   }
 }
