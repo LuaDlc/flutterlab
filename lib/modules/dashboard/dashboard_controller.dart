@@ -108,7 +108,6 @@ class DashboardController extends ChangeNotifier {
         case SortType.newest:
           return b.createdAt.compareTo(a.createdAt);
         case SortType.az:
-        default:
           return a.compareTo(b);
       }
     });
