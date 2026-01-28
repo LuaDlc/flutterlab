@@ -43,6 +43,7 @@ class _DashboardPageState extends State<DashboardPage> {
               _summaryCard(),
               _search(),
               _actions(),
+              _categoryFilter(),
               Expanded(child: _list()),
             ],
           );
@@ -79,7 +80,7 @@ class _DashboardPageState extends State<DashboardPage> {
       spacing: 8,
       children: [
         ElevatedButton(
-          onPressed: () => controller.toggleGroupByCategory,
+          onPressed: controller.toggleGroupByCategory,
           child: Text(
             controller.isGrouped ? 'Lista simples' : 'Agrupar por categoria',
           ),
@@ -158,6 +159,29 @@ class _DashboardPageState extends State<DashboardPage> {
               : const Icon(Icons.close, color: Colors.red),
         );
       },
+    );
+  }
+
+  Widget _categoryFilter() {
+    final categories = controller.categories;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      child: DropdownButtonFormField<String>(
+        decoration: const InputDecoration(
+          labelText: 'Categoria',
+          border: OutlineInputBorder(),
+        ),
+        initialValue: controller.selectedCategory,
+        items: [
+          const DropdownMenuItem<String>(value: null, child: Text('Todas')),
+          ...categories.map(
+            (category) =>
+                DropdownMenuItem(value: category, child: Text(category)),
+          ),
+        ],
+        onChanged: controller.filterByCategory,
+      ),
     );
   }
 }
