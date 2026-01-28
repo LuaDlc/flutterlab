@@ -22,19 +22,25 @@ class DashboardController extends ChangeNotifier {
     _applyFilters();
   }
 
+  bool _groupByCategory = false;
+  bool get isGrouped => _groupByCategory;
+
+  void toggleGroupByCategory() {
+    _groupByCategory = !_groupByCategory;
+    notifyListeners();
+  }
+
   double get totalValue =>
       _visibleProducts.fold(0, (sum, p) => sum + p.totalValue);
 
   int get totalItems => _visibleProducts.length;
 
-  /// 🔎 Busca por nome
   void search(String query) {
     _searchQuery = query.toLowerCase();
     _page = 1;
     _applyFilters();
   }
 
-  /// 🗂️ Agrupar por categoria
   Map<String, List<Product>> groupByCategory() {
     final Map<String, List<Product>> map = {};
 
@@ -68,7 +74,6 @@ class DashboardController extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// 📦 Paginação simulada
   void loadMore() {
     _page++;
     _applyFilters();
