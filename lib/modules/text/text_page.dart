@@ -5,9 +5,6 @@ class TextPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Texto')),
-      body: const Center(child: Text('Texto', style: TextStyle(fontSize: 18))),
-    );
+    return Center(child: Text('Texto', style: TextStyle(fontSize: 18)));
   }
 }

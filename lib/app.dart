@@ -12,7 +12,8 @@ class FlutterLabApp extends StatelessWidget {
     return MaterialApp.router(
       title: 'Flutter Lab',
       debugShowCheckedModeBanner: false,
-      routerConfig: router,
+      routerConfig: AppRouter.router,
+
       theme: ThemeData(
         useMaterial3: true,
         colorSchemeSeed: Colors.deepPurple,

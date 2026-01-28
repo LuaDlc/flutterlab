@@ -5,11 +5,6 @@ class NumbersPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Numbers ')),
-      body: const Center(
-        child: Text('Numbers', style: TextStyle(fontSize: 18)),
-      ),
-    );
+    return Center(child: Text('Numbers', style: TextStyle(fontSize: 18)));
   }
 }
