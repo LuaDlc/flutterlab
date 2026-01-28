@@ -6,9 +6,9 @@ enum SortType { az, highestPrice, newest }
 
 class DashboardController extends ChangeNotifier {
   final List<Product> _allProducts = List.from(mockProducts);
-
+  List<Product> get allProducts => _allProducts;
   List<Product> _visibleProducts = [];
-  List<Product> get products => _visibleProducts;
+  List<Product> get visibleProducts => _visibleProducts;
 
   SortType _currentSort = SortType.az;
 
