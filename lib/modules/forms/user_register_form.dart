@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterlab/modules/forms/validators/user_validators.dart';
 
 class UserRegisterForm extends StatefulWidget {
   const UserRegisterForm({super.key});
@@ -89,13 +90,8 @@ class _UserRegisterFormState extends State<UserRegisterForm> {
                       text: _nameController.text,
                     ),
 
-                    validator: (value) {
-                      if (value == null || value.trim().length < 3) {
-                        return 'O nome de conter ao menos 3 caracteres';
-                      }
+                    validator: (value) => UserValidators.validateName(value),
 
-                      return null;
-                    },
                     onChanged: (_) => _updateFormValidity(),
                   ),
                 ),
@@ -115,18 +111,7 @@ class _UserRegisterFormState extends State<UserRegisterForm> {
                     ),
                     controller: _emailController,
 
-                    validator: (value) {
-                      final emailRegex = RegExp(
-                        r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
-                      );
-
-                      if (value == null ||
-                          emailRegex.hasMatch(value) == false) {
-                        return 'Coloque um email válido';
-                      }
-
-                      return null;
-                    },
+                    validator: UserValidators.validateEmail,
                     onChanged: (_) => _updateFormValidity(),
                   ),
                 ),
@@ -157,19 +142,11 @@ class _UserRegisterFormState extends State<UserRegisterForm> {
                     ),
                     controller: _passwordController,
 
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Informe uma senha';
-                      }
-                      if (value.length < 6) {
-                        return 'A senha deve ter no minimo 6 caracteres';
-                      }
-                      return null;
-                    },
-                    onChanged: (_) {
-                      _confirmPasswordKey.currentState?.validate();
-                      _updateFormValidity();
-                    },
+                    validator: (value) =>
+                        UserValidators.validateConfirmPassword(
+                          value,
+                          _passwordController.text,
+                        ),
                   ),
                 ),
                 Padding(
@@ -199,18 +176,11 @@ class _UserRegisterFormState extends State<UserRegisterForm> {
                     ),
                     controller: _repeatPasswordController,
 
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Repita uma senha';
-                      }
-                      if (value.length < 6) {
-                        return 'A senha deve ter no minimo 6 caracteres';
-                      }
-                      if (value != _passwordController.text) {
-                        return 'As senhas não coincidem';
-                      }
-                      return null;
-                    },
+                    validator: (value) =>
+                        UserValidators.validateConfirmPassword(
+                          value,
+                          _repeatPasswordController.text,
+                        ),
                     onChanged: (_) {
                       _confirmPasswordKey.currentState?.validate();
                       _updateFormValidity();
