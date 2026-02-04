@@ -54,7 +54,7 @@ class _UserRegisterFormState extends State<UserRegisterForm> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
-    void _submit() {
+    void submit() {
       setState(() {
         _autoValidateMode = AutovalidateMode.onUserInteraction;
       });
@@ -198,7 +198,7 @@ class _UserRegisterFormState extends State<UserRegisterForm> {
           ),
           const SizedBox(height: 24),
           ElevatedButton(
-            onPressed: _isFormValid ? _submit : null,
+            onPressed: _isFormValid ? submit : null,
             child: Text(l10n.submit),
           ),
         ],
