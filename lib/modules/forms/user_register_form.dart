@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterlab/l10n/app_localizations.dart';
 import 'package:flutterlab/modules/forms/validators/user_validators.dart';
 
 class UserRegisterForm extends StatefulWidget {
@@ -39,17 +40,6 @@ class _UserRegisterFormState extends State<UserRegisterForm> {
     super.dispose();
   }
 
-  void _submit() {
-    setState(() {
-      _autoValidateMode = AutovalidateMode.onUserInteraction;
-    });
-    if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('Cadastro válido 🎉')));
-    }
-  }
-
   void _updateFormValidity() {
     final isValid = _formKey.currentState?.validate() ?? false;
 
@@ -62,6 +52,19 @@ class _UserRegisterFormState extends State<UserRegisterForm> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
+    void submit() {
+      setState(() {
+        _autoValidateMode = AutovalidateMode.onUserInteraction;
+      });
+      if (_formKey.currentState!.validate()) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(l10n.validRegistration)));
+      }
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
       child: Column(
@@ -83,14 +86,17 @@ class _UserRegisterFormState extends State<UserRegisterForm> {
                       FocusScope.of(context).requestFocus(_emailFocus);
                     },
                     decoration: InputDecoration(
-                      hintText: 'Nome *',
-                      labelText: 'Nome *',
+                      hintText: l10n.name,
+                      labelText: l10n.name,
                     ),
                     controller: TextEditingController(
                       text: _nameController.text,
                     ),
 
-                    validator: (value) => UserValidators.validateName(value),
+                    validator: (value) =>
+                        UserValidators.validateName(value) != null
+                        ? l10n.nameError
+                        : null,
 
                     onChanged: (_) => _updateFormValidity(),
                   ),
@@ -106,8 +112,8 @@ class _UserRegisterFormState extends State<UserRegisterForm> {
                     },
 
                     decoration: InputDecoration(
-                      hintText: 'email *',
-                      labelText: 'email *',
+                      hintText: l10n.email,
+                      labelText: l10n.email,
                     ),
                     controller: _emailController,
 
@@ -126,8 +132,8 @@ class _UserRegisterFormState extends State<UserRegisterForm> {
                     focusNode: _passwordFocus,
                     obscureText: _obscured,
                     decoration: InputDecoration(
-                      hintText: 'senha *',
-                      labelText: 'senha *',
+                      hintText: l10n.password,
+                      labelText: l10n.password,
 
                       suffixIcon: IconButton(
                         onPressed: () {
@@ -171,8 +177,8 @@ class _UserRegisterFormState extends State<UserRegisterForm> {
                           _obscured ? Icons.visibility_off : Icons.visibility,
                         ),
                       ),
-                      hintText: 'senha *',
-                      labelText: 'senha *',
+                      hintText: l10n.password,
+                      labelText: l10n.password,
                     ),
                     controller: _repeatPasswordController,
 
@@ -192,8 +198,8 @@ class _UserRegisterFormState extends State<UserRegisterForm> {
           ),
           const SizedBox(height: 24),
           ElevatedButton(
-            onPressed: _isFormValid ? _submit : null,
-            child: const Text('Cadastrar'),
+            onPressed: _isFormValid ? submit : null,
+            child: Text(l10n.submit),
           ),
         ],
       ),

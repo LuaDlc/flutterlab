@@ -1,0 +1,35 @@
+{
+  "@@locale": "en",
+  "appTitle": "Flutter Lab",
+  "appSubTitle": "Flutter Study Playground",
+  "registerTitle": "User Registration",
+  "registerSubtitle": "Validations, focus and regex",
+  "name": "Name",
+  "email": "Email",
+  "password": "Password",
+  "confirmPassword": "Confirm password",
+  "submit": "Register",
+
+  "nameError": "Name must have at least 3 characters",
+  "emailError": "Invalid email",
+  "passwordError": "Password must be at least 8 characters",
+  "confirmPasswordError": "Passwords do not match",
+  "validRegistration": "Valid Registration!",
+  "highestPrice": "Highest Price",
+  "az": "A to Z",
+  "simpleList": "Simple List",
+  "groupByCategory": "Group by category",
+  "removeDuplicates": "removeDuplicates",
+  "mostRecent": "Most recent",
+  "english": "English",
+  "spanish": "Spanish",
+  "portuguese": "Portuguese",
+  "settingsTitle": "Settings",
+  "language": "Language",
+  "totalOfItens": "Total of items",
+  "search": "Search",
+  "reset": "Reset",
+  "all": "All"
+
+
+}
