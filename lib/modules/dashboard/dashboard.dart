@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterlab/l10n/app_localizations.dart';
 import 'package:flutterlab/models/product.dart';
 import 'package:flutterlab/modules/dashboard/dashboard_controller.dart';
 import 'package:flutterlab/modules/dashboard/mock_products.dart';
@@ -32,8 +33,10 @@ class _DashboardPageState extends State<DashboardPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Dashboard - Lógica Dart')),
+      appBar: AppBar(title: Text(l10n.registerTitle)),
       drawer: const AppDrawer(),
       body: AnimatedBuilder(
         animation: controller,
@@ -53,21 +56,23 @@ class _DashboardPageState extends State<DashboardPage> {
   }
 
   Widget _summaryCard() {
+    final l10n = AppLocalizations.of(context)!;
     return Card(
       margin: const EdgeInsets.all(12),
       child: Text(
-        'Total de  itens: ${controller.totalItems}\n, valor total: R\$ ${controller.totalValue.toStringAsFixed(2)}',
+        ' ${l10n.totalOfItens} : ${controller.totalItems}\n, valor total: R\$ ${controller.totalValue.toStringAsFixed(2)}',
         style: const TextStyle(fontSize: 16),
       ),
     );
   }
 
   Widget _search() {
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: TextField(
-        decoration: const InputDecoration(
-          labelText: 'Buscar produto',
+        decoration: InputDecoration(
+          labelText: l10n.search,
           prefixIcon: Icon(Icons.search),
         ),
         onChanged: controller.search,
@@ -76,33 +81,34 @@ class _DashboardPageState extends State<DashboardPage> {
   }
 
   Widget _actions() {
+    final l10n = AppLocalizations.of(context)!;
     return Wrap(
       spacing: 8,
       children: [
         ElevatedButton(
           onPressed: controller.toggleGroupByCategory,
           child: Text(
-            controller.isGrouped ? 'Lista simples' : 'Agrupar por categoria',
+            controller.isGrouped ? l10n.simpleList : l10n.groupByCategory,
           ),
         ),
         ElevatedButton(
           onPressed: () => controller.sort(.highestPrice),
-          child: const Text('Maior preço'),
+          child: Text(l10n.highestPrice),
         ),
         ElevatedButton(
           onPressed: () => controller.sort(.az),
-          child: const Text('A-Z'),
+          child: Text(l10n.az),
         ),
         ElevatedButton(
           onPressed: () => controller.removeDuplicates,
-          child: const Text('Remover duplicatas'),
+          child: Text(l10n.removeDuplicates),
         ),
         ElevatedButton(
           onPressed: () => controller.sort(.newest),
-          child: const Text('Mais recente'),
+          child: Text(l10n.mostRecent),
         ),
 
-        ElevatedButton(onPressed: controller.reset, child: const Text('Reset')),
+        ElevatedButton(onPressed: controller.reset, child: Text(l10n.reset)),
       ],
     );
   }
@@ -164,6 +170,7 @@ class _DashboardPageState extends State<DashboardPage> {
 
   Widget _categoryFilter() {
     final categories = controller.categories;
+    final l10n = AppLocalizations.of(context)!;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -174,7 +181,7 @@ class _DashboardPageState extends State<DashboardPage> {
         ),
         initialValue: controller.selectedCategory,
         items: [
-          const DropdownMenuItem<String>(value: null, child: Text('Todas')),
+          DropdownMenuItem<String>(value: null, child: Text(l10n.all)),
           ...categories.map(
             (category) =>
                 DropdownMenuItem(value: category, child: Text(category)),

@@ -1,0 +1,35 @@
+{
+  "@@locale": "es",
+  "appTitle": "Flutter Lab",
+  "appSubTitle": "Entorno de aprendizaje de Flutter",
+  "registerTitle": "Registro de Usuario",
+  "registerSubtitle": "Validaciones, enfoque y regex",
+  "name": "Nombre",
+  "email": "Correo electrónico",
+  "password": "Contraseña",
+  "confirmPassword": "Confirmar contraseña",
+  "submit": "Registrar",
+
+  "nameError": "El nombre debe tener al menos 3 caracteres",
+  "emailError": "Correo electrónico inválido",
+  "passwordError": "La contraseña debe tener al menos 8 caracteres",
+  "confirmPasswordError": "Las contraseñas no coinciden",
+  "validRegistration": "Registro válido!",
+  "highestPrice": "precio más alto",
+  "az": "A a Z",
+  "simpleList": "Lista simple",
+  "groupByCategory": "Agrupar por categoría",
+  "removeDuplicates": "Eliminar duplicados",
+  "mostRecent": "Más reciente",
+  "english": "Inglés",
+  "spanish": "Español",
+  "portuguese": "Portugués",
+  "settingsTitle": "Configuración",
+  "language": "Idioma",
+  "totalOfItens": "Total de artículos",
+  "search": "Buscar",
+  "reset": "Restabelecer",
+  "all": "Todos"
+
+
+}

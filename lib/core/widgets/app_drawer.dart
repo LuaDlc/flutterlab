@@ -1,29 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:flutterlab/router/app_router.dart';
+import 'package:flutterlab/l10n/app_localizations.dart';
+import 'package:go_router/go_router.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Drawer(
       child: Builder(
         builder: (context) {
           return ListView(
             children: [
-              const DrawerHeader(
+              DrawerHeader(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Flutter Lab',
+                      l10n.appTitle,
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     SizedBox(height: 8),
-                    Text('Playground de estudos Flutter'),
+                    Text(l10n.appSubTitle),
                   ],
                 ),
               ),
@@ -80,7 +82,7 @@ class AppDrawer extends StatelessWidget {
       leading: Icon(icon),
       title: Text(label),
       onTap: () {
-        AppRouter.router.go(route);
+        context.go(route);
       },
     );
   }
