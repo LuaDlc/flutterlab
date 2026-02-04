@@ -29,9 +29,9 @@
   "totalOfItens": "Total de itens",
   "search": "Buscar produtos",
   "reset": "Redefinir",
-  "all": "Todas"
-
-
-
-
+  "all": "Todas",
+  "currencyConverter": "Conversor de Moeda",
+  "amount": "Valor",
+  "from": "De",
+  "to": "Para"
 }

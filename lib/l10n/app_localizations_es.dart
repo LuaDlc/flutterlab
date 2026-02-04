@@ -94,4 +94,16 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get all => 'Todos';
+
+  @override
+  String get currencyConverter => 'Conversor de Moeda';
+
+  @override
+  String get amount => 'Valor';
+
+  @override
+  String get from => 'De';
+
+  @override
+  String get to => 'Para';
 }
