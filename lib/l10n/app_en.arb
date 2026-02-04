@@ -29,7 +29,12 @@
   "totalOfItens": "Total of items",
   "search": "Search",
   "reset": "Reset",
-  "all": "All"
+  "all": "All",
+  "currencyConverter": "Conversor de Moeda",
+"amount": "Amount",
+"from": "From",
+"to": "To"
+
 
 
 }
