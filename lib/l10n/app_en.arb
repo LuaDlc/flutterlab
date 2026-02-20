@@ -33,7 +33,11 @@
   "currencyConverter": "Conversor de Moeda",
 "amount": "Amount",
 "from": "From",
-"to": "To"
+"to": "To",
+"clipboardTitle": "Clipboard",
+"copy": "Copy",
+"paste": "Paste",
+"textCopied": "Text copied!"
 
 
 

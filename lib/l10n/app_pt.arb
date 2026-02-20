@@ -33,5 +33,9 @@
   "currencyConverter": "Conversor de Moeda",
   "amount": "Valor",
   "from": "De",
-  "to": "Para"
+  "to": "Para",
+  "clipboardTitle": "Área de Transferência",
+"copy": "Copiar",
+"paste": "Colar",
+"textCopied": "Texto copiado!"
 }

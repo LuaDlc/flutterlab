@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterlab/modules/text/widgets/clipboard_section.dart';
 import 'package:flutterlab/modules/text/widgets/dynamic_rich_text.dart';
 
 class RichTextPage extends StatefulWidget {
@@ -32,6 +33,10 @@ class _RichTextPageState extends State<RichTextPage> {
                   _value = value;
                 });
               },
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: ClipboardSection(),
             ),
           ],
         ),

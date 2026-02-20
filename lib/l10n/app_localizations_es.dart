@@ -106,4 +106,16 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get to => 'Para';
+
+  @override
+  String get clipboardTitle => 'Portapapeles';
+
+  @override
+  String get copy => 'Copiar';
+
+  @override
+  String get paste => 'Pegar';
+
+  @override
+  String get textCopied => 'Texto copiado!';
 }
