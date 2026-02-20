@@ -106,4 +106,16 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get to => 'Para';
+
+  @override
+  String get clipboardTitle => 'Área de Transferência';
+
+  @override
+  String get copy => 'Copiar';
+
+  @override
+  String get paste => 'Colar';
+
+  @override
+  String get textCopied => 'Texto copiado!';
 }
