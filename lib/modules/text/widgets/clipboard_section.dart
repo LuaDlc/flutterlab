@@ -76,6 +76,14 @@ class _ClipboardSectionState extends State<ClipboardSection> {
             ElevatedButton(onPressed: _pasteText, child: Text(l10n.paste)),
           ],
         ),
+        const SizedBox(height: 12),
+        SelectionArea(
+          child: SelectableText(
+            'Flutter é incrível para criar interfaces ricas e reativas. '
+            'Você pode selecionar qualquer parte deste texto.',
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+        ),
       ],
     );
   }
