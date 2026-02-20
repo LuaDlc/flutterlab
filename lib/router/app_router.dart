@@ -5,7 +5,7 @@ import 'package:flutterlab/modules/forms/forms_page.dart';
 import 'package:flutterlab/modules/media/media_page.dart';
 import 'package:flutterlab/modules/numbers/numbers_page.dart';
 import 'package:flutterlab/modules/settings/settings_page.dart';
-import 'package:flutterlab/modules/text/text_page.dart';
+import 'package:flutterlab/modules/text/rich_text_page.dart';
 import 'package:go_router/go_router.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -35,7 +35,7 @@ class AppRouter {
           GoRoute(
             path: '/text',
             name: 'text',
-            builder: (_, _) => const TextPage(),
+            builder: (_, _) => const RichTextPage(),
           ),
 
           GoRoute(
