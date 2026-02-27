@@ -37,5 +37,7 @@
   "clipboardTitle": "Portapapeles",
 "copy": "Copiar",
 "paste": "Pegar",
-"textCopied": "Texto copiado!"
+"textCopied": "Texto copiado!",
+"readMore": "Leer más",
+"readLess": "Leer menos"
 }

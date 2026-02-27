@@ -37,7 +37,9 @@
 "clipboardTitle": "Clipboard",
 "copy": "Copy",
 "paste": "Paste",
-"textCopied": "Text copied!"
+"textCopied": "Text copied!",
+"readMore": "Read more",
+"readLess": "Read less"
 
 
 
