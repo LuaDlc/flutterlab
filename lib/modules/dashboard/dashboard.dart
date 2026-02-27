@@ -42,8 +42,14 @@ class _DashboardPageState extends State<DashboardPage> {
         animation: controller,
         builder: (_, _) {
           return Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              _summaryCard(),
+              Container(
+                padding: EdgeInsets.all(10),
+                height: 120,
+                width: MediaQuery.of(context).size.width,
+                child: _summaryCard(),
+              ),
               _search(),
               _actions(),
               _categoryFilter(),

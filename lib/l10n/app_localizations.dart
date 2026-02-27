@@ -318,6 +318,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Text copied!'**
   String get textCopied;
+
+  /// No description provided for @readMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Read more'**
+  String get readMore;
+
+  /// No description provided for @readLess.
+  ///
+  /// In en, this message translates to:
+  /// **'Read less'**
+  String get readLess;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

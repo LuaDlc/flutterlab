@@ -118,4 +118,10 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get textCopied => 'Texto copiado!';
+
+  @override
+  String get readMore => 'Leer más';
+
+  @override
+  String get readLess => 'Leer menos';
 }

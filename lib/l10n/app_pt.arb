@@ -37,5 +37,7 @@
   "clipboardTitle": "Área de Transferência",
 "copy": "Copiar",
 "paste": "Colar",
-"textCopied": "Texto copiado!"
+"textCopied": "Texto copiado!",
+"readMore": "Ler mais",
+"readLess": "Ler menos"
 }
